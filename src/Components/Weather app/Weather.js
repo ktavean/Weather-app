@@ -7,8 +7,11 @@ const displayWeather = (data) => {
     const box = document.createElement("div");
     box.setAttribute("id", "box");
 
-    const topSide = document.createElement("div");
-    topSide.setAttribute("id", "boxTop");
+    const boxTop = document.createElement("div");
+    boxTop.setAttribute("id", "boxTop");
+
+    const boxMid = document.createElement("div");
+    boxMid.setAttribute("id", "boxMid");
 
     const flag = document.createElement("img");
     flag.setAttribute("src", data.flag);
@@ -19,11 +22,25 @@ const displayWeather = (data) => {
     const temp = document.createElement("h1");
     temp.textContent = `${data.main.temp} °F`;
 
-    topSide.appendChild(flag);
-    topSide.appendChild(city);
+    const desc = document.createElement("h2");
+    desc.textContent = `Mainly ${data.weather[0].description}`;
 
-    box.appendChild(topSide);
+    const minTemp = document.createElement("p");
+    minTemp.textContent = `Min: ${data.main.temp_min}`;
+
+    const maxTemp = document.createElement("p");
+    maxTemp.textContent = `Max: ${data.main.temp_max}`;
+
+    boxTop.appendChild(flag);
+    boxTop.appendChild(city);
+
+    boxMid.appendChild(minTemp);
+    boxMid.appendChild(maxTemp);
+
+    box.appendChild(boxTop);
     box.appendChild(temp);
+    box.appendChild(desc);
+    box.appendChild(boxMid);
 
     container.appendChild(box);
 }

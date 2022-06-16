@@ -15,8 +15,20 @@
 #boxTop {
     display: flex;
     gap: 0.5em;
+    align-items: center;
 }
 
 #boxTop img {
-    width: 35px;
+    width: 2.5em;
+    height: 2em;
+}
+
+#boxTop h2 {
+    font-size: 2.5em;
+}
+
+#boxMid {
+    display: flex;
+    font-size: 2em;
+    gap: 1em;
 }
