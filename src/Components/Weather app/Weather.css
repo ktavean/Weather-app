@@ -1,0 +1,22 @@
+#box {
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    width: 28em;
+    height: 30em;
+    background-color: black;
+    color: white;
+}
+
+#boxTop {
+    display: flex;
+    gap: 0.5em;
+}
+
+#boxTop img {
+    width: 35px;
+}
