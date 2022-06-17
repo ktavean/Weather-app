@@ -47,7 +47,7 @@ const displayWeather = (data) => {
     city.textContent = data.name;
 
     const tempIcon = document.createElement("img");
-    tempIcon.src = "./Assets/thermometer.svg";
+    tempIcon.src = "./Assets/Icons/thermometer.png";
 
     const temp = document.createElement("h1");
 
@@ -56,12 +56,14 @@ const displayWeather = (data) => {
     desc.textContent = `Mainly ${descriptionString}`;
 
     const minIcon = document.createElement("img");
-    minIcon.src = "./Assets/thermometer-low.svg";
+    minIcon.src = "./Assets/Icons/thermometer-low.png";
+    minIcon.setAttribute("class", "icon");
 
     const minTemp = document.createElement("p");
 
     const maxIcon = document.createElement("img");
-    maxIcon.src = "./Assets/thermometer-high.svg";
+    maxIcon.src = "./Assets/Icons/thermometer-high.png";
+    maxIcon.setAttribute("class", "icon");
 
     const maxTemp = document.createElement("p");
 
@@ -79,7 +81,9 @@ const displayWeather = (data) => {
     const sunriseMinutes = ("0" + sunriseUnix.getMinutes()).slice(-2);
 
     const sunriseIcon = document.createElement("img");
-    sunriseIcon.src = "./Assets/weather-sunset-up.svg";
+    sunriseIcon.src = "./Assets/Icons/weather-sunset-up.png";
+    sunriseIcon.setAttribute("class", "icon");
+
     const sunrise = document.createElement("p");
     sunrise.textContent = `${sunriseHours}:${sunriseMinutes}`;
 
@@ -88,7 +92,9 @@ const displayWeather = (data) => {
     const sunsetMinutes = ("0" + sunsetUnix.getMinutes()).slice(-2);
 
     const sunsetIcon = document.createElement("img");
-    sunsetIcon.src = "./Assets/weather-sunset-down.svg";
+    sunsetIcon.src = "./Assets/Icons/weather-sunset-down.png";
+    sunsetIcon.setAttribute("class", "icon");
+
     const sunset = document.createElement("p");
     sunset.textContent = `${sunsetHours}:${sunsetMinutes}`;
 
@@ -109,9 +115,17 @@ const displayWeather = (data) => {
     console.log(descriptionString.includes("cloud"));
     console.log(descriptionString.includes("clear"));
     if (descriptionString.includes("cloud")) {
-        box.style.background = "url(./Assets/Images/clouds.jpg)";
-    } else if (descriptionString.includes("clear")) {
         box.style.background = "url('./Assets/Images/clouds.jpg')";
+    } else if (descriptionString.includes("clear")) {
+        box.style.background = "url('./Assets/Images/clear.jpg')";
+    } else if (descriptionString.includes("rain")) {
+        box.style.background = "url('./Assets/Images/clear.jpg')";
+    } else if (descriptionString.includes("thunderstorm")) {
+        box.style.background = "url('./Assets/Images/thunderstorm.jpg')";
+    } else if (descriptionString.includes("snow")) {
+        box.style.background = "url('./Assets/Images/snow.jpg')";
+    } else if (descriptionString.includes("mist")) {
+        box.style.background = "url('./Assets/Images/mist.jpg')";
     }
 
     boxCity.appendChild(flag);
@@ -156,16 +170,24 @@ const displayWeather = (data) => {
     container.appendChild(box);
 }
 
+const load = () => {
+    const loadingText = document.createElement("h1");
+    loadingText.setAttribute("id", "loading");
+    loadingText.textContent = "Grabbing the info... Hold on...";
+    container.appendChild(loadingText);
+}
+
 const getWeather = async (city, unit) => {
+    load()
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`);
     const data = await response.json();
     const flag = `https://countryflagsapi.com/png/${data.sys.country}`;
     data["flag"] = flag;
     data["unit"] = unit;
-    displayWeather(data);
+    if (data) {
+        displayWeather(data);
+        container.removeChild(document.querySelector("#loading"));
+    }
 }
-
-// https://countryflagsapi.com/:filetype/:code
-
 
 export default getWeather
