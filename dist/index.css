@@ -33,6 +33,30 @@ p {
     font-size: 0.5em;
 }
 
+#search {
+    height: 2.6em;
+}
+
+#submit {
+    padding: 0.4em;
+    border: 0;
+    font-size: 1.1em;
+    color: white;
+    background-color: #eb582f;
+}
+
+#unit {
+    padding: 0.4em;
+    border: 0;
+    font-size: 1.1em;
+    color: white;
+    background-color: #eb582f;
+}
+
+#submit:hover, #unit:hover {
+    background-color: #ebb62f;
+}
+
 #container {
     padding: 1em;
     flex-grow: 1;
@@ -42,5 +66,5 @@ footer {
     padding: 1em;
     background-color: #000000;
     color: white;
-    box-shadow: -1px -1px white;
+    /* box-shadow: -1px -1px white; */
 }

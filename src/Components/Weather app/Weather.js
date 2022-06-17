@@ -119,7 +119,7 @@ const displayWeather = (data) => {
     } else if (descriptionString.includes("clear")) {
         box.style.background = "url('./Assets/Images/clear.jpg')";
     } else if (descriptionString.includes("rain")) {
-        box.style.background = "url('./Assets/Images/clear.jpg')";
+        box.style.background = "url('./Assets/Images/rain.jpg')";
     } else if (descriptionString.includes("thunderstorm")) {
         box.style.background = "url('./Assets/Images/thunderstorm.jpg')";
     } else if (descriptionString.includes("snow")) {
